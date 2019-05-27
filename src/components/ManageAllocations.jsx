@@ -1,31 +1,31 @@
 import React, { Component } from "react";
-import { Table, Button, Row, Col } from "antd";
+import { Table, Button, Row, Col, Icon } from "antd";
 import "antd/dist/antd.css";
 
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park"
+    name: "Tyron",
+    Project: 32,
+    Details: "New York No. 1 Lake Park"
   },
   {
     key: "2",
     name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park"
+    Project: 42,
+    Details: "London No. 1 Lake Park"
   },
   {
     key: "3",
     name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park"
+    Project: 32,
+    Details: "Sidney No. 1 Lake Park"
   },
   {
     key: "4",
     name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park"
+    Project: 32,
+    Details: "London No. 2 Lake Park"
   }
 ];
 
@@ -58,7 +58,7 @@ export default class ManageAllocations extends Component {
     this.setState({
       sortedInfo: {
         order: "descend",
-        columnKey: "age"
+        columnKey: "Project"
       }
     });
   };
@@ -79,36 +79,42 @@ export default class ManageAllocations extends Component {
         sortOrder: sortedInfo.columnKey === "name" && sortedInfo.order
       },
       {
-        title: "Age",
-        dataIndex: "age",
-        key: "age",
-        sorter: (a, b) => a.age - b.age,
-        sortOrder: sortedInfo.columnKey === "age" && sortedInfo.order
+        title: "Project",
+        dataIndex: "Project",
+        key: "agProjecte",
+        sorter: (a, b) => a.Project - b.Project,
+        sortOrder: sortedInfo.columnKey === "Project" && sortedInfo.order
       },
       {
-        title: "Address",
-        dataIndex: "address",
-        key: "address",
+        title: "Details",
+        dataIndex: "Details",
+        key: "Details",
         filters: [
           { text: "London", value: "London" },
           { text: "New York", value: "New York" }
         ],
-        filteredValue: filteredInfo.address || null,
-        onFilter: (value, record) => record.address.includes(value),
-        sorter: (a, b) => a.address.length - b.address.length,
-        sortOrder: sortedInfo.columnKey === "address" && sortedInfo.order
+        filteredValue: filteredInfo.Details || null,
+        onFilter: (value, record) => record.Details.includes(value),
+        sorter: (a, b) => a.Details.length - b.Details.length,
+        sortOrder: sortedInfo.columnKey === "Details" && sortedInfo.order
+      },
+      {
+        title: "Add Members",
+        dataIndex: "Add Members",
+        key: "Add Members",
+        render: () => <Icon type="idcard" theme="twoTone" />
       },
       {
         title: "View",
         dataIndex: "View",
         key: "View",
-        render: () => <Button>V</Button>
+        render: () => <Icon type="appstore" theme="twoTone" />
       },
       {
         title: "Action",
         dataIndex: "more",
         key: "more",
-        render: () => <Button>a</Button>
+        render: () => <Icon type="edit" theme="twoTone" />
       }
     ];
     return (
@@ -126,9 +132,6 @@ export default class ManageAllocations extends Component {
               onChange={this.handleChange}
             />
             <div className="table-operations">
-              <Button onClick={this.setAgeSort}>Sort age</Button>
-              <Button onClick={this.clearFilters}>Clear filters</Button>
-              <Button onClick={this.clearAll}>Clear filters and sorters</Button>
               <Button>add</Button>
             </div>
           </Col>

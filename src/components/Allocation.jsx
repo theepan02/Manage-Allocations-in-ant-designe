@@ -50,7 +50,7 @@ const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
   </Transfer>
 );
 
-const mockTags = ["cat", "dog", "bird"];
+const mockTags = ["QA", "Developer", "Project Manager"];
 
 const mockData = [];
 for (let i = 0; i < 20; i++) {
